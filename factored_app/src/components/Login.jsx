@@ -46,7 +46,6 @@ const Login = () => {
         },
       })
       .then((response) => {
-        debugger;
         if (response.status === 200) {
           sessionStorage.removeItem("token");
           setMessage({
