@@ -1,11 +1,14 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import axios_api from "../api/axios_api";
-import useLocation from "wouter/use-location";
-const LoginForm = ({ handleSubmit, message, title, buttonText }) => {
+const LoginForm = ({
+  handleSubmit,
+  resetPassword,
+  message,
+  title,
+  buttonText,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [, setLocation] = useLocation();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -13,29 +16,7 @@ const LoginForm = ({ handleSubmit, message, title, buttonText }) => {
   };
 
   const handlePasswordReset = () => {
-    axios_api
-      .post("/users/password", {
-        user: {
-          email: email,
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          sessionStorage.removeItem("token");
-          message.type = "error";
-          message.message = response.data.message;
-          setLocation("/");
-        } else {
-          message.type = "error";
-          message.message = response.data.message;
-        }
-      })
-      .catch((err) => {
-        message = {
-          type: "error",
-          message: err.message,
-        };
-      });
+    resetPassword(email);
   };
 
   return (
@@ -108,6 +89,7 @@ const LoginForm = ({ handleSubmit, message, title, buttonText }) => {
 
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  resetPassword: PropTypes.func.isRequired,
   message: PropTypes.shape({
     type: PropTypes.string,
     message: PropTypes.string,
