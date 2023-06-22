@@ -1,9 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import LoginForm from "../components/LoginForm";
+import useLocation from "wouter/use-location";
 
 const SignUp = () => {
   const [message, setMessage] = useState({});
+  const [, setLocation] = useLocation();
 
   const handleSubmit = async (email, password) => {
     try {
@@ -14,7 +16,8 @@ const SignUp = () => {
         },
       });
       if (response.status === 200) {
-        setMessage({ type: "success", message: "User created successfully" });
+        sessionStorage.setItem("token", response.data);
+        setLocation("/films");
       }
     } catch (error) {
       if (error.response.status === 401) {

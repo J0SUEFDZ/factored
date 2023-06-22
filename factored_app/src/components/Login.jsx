@@ -16,7 +16,7 @@ const Login = () => {
         },
       });
       if (response.status === 200) {
-        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("token", response.data);
         setMessage({ type: "success", message: "User logged successfully" });
         setLocation("/films");
       }
