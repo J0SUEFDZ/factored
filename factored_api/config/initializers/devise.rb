@@ -14,7 +14,17 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'e0d58141f341072a371238ffc7bbe9cac37d4801fa457b6bec48b9c38a7723eaaeb256498077900ea2a6c51d5dc6ee4fc7e420bb6f67e730cbef6843c80f51d1'
+  config.secret_key = 'e0d58141f341072a371238ffc7bbe9cac37d4801fa457b6bec48b9c38a7723eaaeb256498077900ea2a6c51d5dc6ee4fc7e420bb6f67e730cbef6843c80f51d1'
+  config.jwt do |jwt|
+    jwt.secret =  'e0d58141f341072a371238ffc7bbe9cac37d4801fa457b6bec48b9c38a7723eaaeb256498077900ea2a6c51d5dc6ee4fc7e420bb6f67e730cbef6843c80f51d1'
+    jwt.dispatch_requests = [
+      ['POST', %r{^\/users\/sign_in}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^\/logout}]
+    ]
+    jwt.expiration_time = 1.day.to_i
+  end
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
