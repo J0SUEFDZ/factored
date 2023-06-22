@@ -33,7 +33,7 @@ gem install rails -v 6.1.4.1 # specific version
 bundle install # install Gems
 rails db:migrate # create migrations
 rails db:seed # seeding with all data
-rails s -p 8000 # specific port 8000
+rails s # port 8000
 ```
 
 ## Frontend Setup
