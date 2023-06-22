@@ -7,7 +7,7 @@
 
 ## Backend
 
-Given a database schema on how the relations work, and an SQL file with a database for Star Wars, create a backend API-only project in RoR with the schema and load the information using seeds. The API must have user creation.
+Given a database schema on how the relations work, and an SQL file with a database for Star Wars, create a backend API-only project in RoR with the schema and load the information using seeds. The API must have user creation. Should also have CRUD endpoint for all resources.
 
 ## Frontend
 
